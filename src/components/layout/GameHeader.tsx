@@ -2,19 +2,44 @@
 
 import React from 'react';
 import { useCareerStore } from '@/stores/useCareerStore';
+import { useSeasonStore } from '@/stores/useSeasonStore';
 import { formatGBP, formatDate } from '@/lib/utils';
-import { Play, Calendar, Award } from 'lucide-react';
+import { Play, Calendar, Award, CalendarDays } from 'lucide-react';
 
 export const GameHeader: React.FC = () => {
   const {
     currentDate,
     clubName,
+    clubId,
     transferBudget,
     wageBudgetWeekly,
     currentWageBillWeekly,
     boardConfidence,
     advanceDay,
   } = useCareerStore();
+
+  const { currentGameweek, fixtures, initSeason, simulateGameweek, advanceGameweek } =
+    useSeasonStore();
+
+  const handleContinue = () => {
+    // Init season if not done yet
+    if (fixtures.length === 0) {
+      initSeason(clubId);
+    }
+
+    // Simulate all non-user matches in the current gameweek
+    simulateGameweek(currentGameweek, clubId);
+
+    // Advance the in-game calendar day
+    advanceDay();
+
+    // Check if all GW fixtures are settled → advance GW
+    const gwFixtures = fixtures.filter((f) => f.gameweek === currentGameweek);
+    const allDone = gwFixtures.length > 0 && gwFixtures.every((f) => f.played);
+    if (allDone) {
+      advanceGameweek();
+    }
+  };
 
   return (
     <header className="h-14 lg:h-16 border-b border-border bg-surface px-3 lg:px-6 flex items-center justify-between sticky top-0 z-40 gap-2">
@@ -36,9 +61,16 @@ export const GameHeader: React.FC = () => {
           <Calendar className="w-4 h-4 text-pl-cyan" />
           <span className="font-medium">{formatDate(currentDate)}</span>
         </div>
+
+        {/* Gameweek pill */}
+        <div className="hidden lg:flex items-center gap-1.5 text-xs text-gray-300 bg-background/60 px-3 py-1.5 rounded-md border border-border/80 shrink-0">
+          <CalendarDays className="w-3.5 h-3.5 text-pl-cyan" />
+          <span className="font-semibold">GW {currentGameweek}</span>
+          <span className="text-gray-500">/ 38</span>
+        </div>
       </div>
 
-      {/* Financials & Confidence — hidden on small screens */}
+      {/* Financials & Confidence */}
       <div className="flex items-center gap-2 lg:gap-6">
         <div className="hidden lg:flex items-center gap-4 bg-background/50 px-4 py-1.5 rounded-lg border border-border/70 text-xs">
           <div>
@@ -68,7 +100,7 @@ export const GameHeader: React.FC = () => {
 
         {/* Continue Button */}
         <button
-          onClick={advanceDay}
+          onClick={handleContinue}
           className="flex items-center gap-1.5 lg:gap-2 px-3 lg:px-5 py-2 bg-gradient-to-r from-pl-cyan to-emerald-400 text-black font-bold rounded-lg shadow-lg shadow-pl-cyan/20 hover:brightness-110 active:scale-95 transition-all text-xs lg:text-sm shrink-0"
         >
           <Play className="w-3.5 h-3.5 lg:w-4 lg:h-4 fill-black" />
