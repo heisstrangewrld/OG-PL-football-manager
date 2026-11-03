@@ -35,7 +35,7 @@ export default function MatchdayPage() {
       <MatchHUD onOpenTactics={() => setIsTacticsOpen(true)} />
 
       {/* 2D Phaser Match Pitch Visualizer */}
-      <div className="w-full h-[580px]">
+      <div className="w-full h-[300px] sm:h-[440px] lg:h-[580px]">
         <MatchCanvas />
       </div>
 
@@ -124,3 +124,4 @@ export default function MatchdayPage() {
     </div>
   );
 }
+

@@ -34,19 +34,19 @@ export default function SquadPage() {
           <table className="w-full text-left text-xs">
             <thead className="bg-background/80 text-gray-400 uppercase tracking-wider text-[10px] font-bold border-b border-border">
               <tr>
-                <th className="py-3 px-4">#</th>
-                <th className="py-3 px-4">Player</th>
-                <th className="py-3 px-4">Pos</th>
-                <th className="py-3 px-4">Role</th>
-                <th className="py-3 px-4 text-center">Condition</th>
-                <th className="py-3 px-4 text-center">Morale</th>
-                <th className="py-3 px-4 text-center">PAC</th>
-                <th className="py-3 px-4 text-center">SHO</th>
-                <th className="py-3 px-4 text-center">PAS</th>
-                <th className="py-3 px-4 text-center">DRI</th>
-                <th className="py-3 px-4 text-center">DEF</th>
-                <th className="py-3 px-4 text-center">PHY</th>
-                <th className="py-3 px-4 text-right">Actions</th>
+                <th className="py-3 px-3 lg:px-4">#</th>
+                <th className="py-3 px-3 lg:px-4">Player</th>
+                <th className="py-3 px-3 lg:px-4">Pos</th>
+                <th className="py-3 px-3 lg:px-4 hidden sm:table-cell">Role</th>
+                <th className="py-3 px-3 lg:px-4 text-center hidden md:table-cell">Condition</th>
+                <th className="py-3 px-3 lg:px-4 text-center hidden md:table-cell">Morale</th>
+                <th className="py-3 px-3 lg:px-4 text-center">PAC</th>
+                <th className="py-3 px-3 lg:px-4 text-center hidden sm:table-cell">SHO</th>
+                <th className="py-3 px-3 lg:px-4 text-center hidden sm:table-cell">PAS</th>
+                <th className="py-3 px-3 lg:px-4 text-center hidden sm:table-cell">DRI</th>
+                <th className="py-3 px-3 lg:px-4 text-center">DEF</th>
+                <th className="py-3 px-3 lg:px-4 text-center hidden sm:table-cell">PHY</th>
+                <th className="py-3 px-3 lg:px-4 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border/60">
@@ -66,10 +66,10 @@ export default function SquadPage() {
                     className="hover:bg-surfaceHover/80 transition-colors group cursor-pointer"
                     onClick={() => setModalPlayer(player)}
                   >
-                    <td className="py-3 px-4 font-bold text-gray-400 group-hover:text-white">
+                    <td className="py-3 px-3 lg:px-4 font-bold text-gray-400 group-hover:text-white">
                       {player.shirtNumber}
                     </td>
-                    <td className="py-3 px-4">
+                    <td className="py-3 px-3 lg:px-4">
                       <div className="flex items-center gap-2">
                         {isStarter && (
                           <span className="w-1.5 h-1.5 rounded-full bg-pl-cyan" title="Starting XI" />
@@ -79,32 +79,32 @@ export default function SquadPage() {
                         </span>
                       </div>
                     </td>
-                    <td className="py-3 px-4">
+                    <td className="py-3 px-3 lg:px-4">
                       <span className="font-bold text-pl-cyan bg-pl-cyan/10 px-2 py-0.5 rounded border border-pl-cyan/20">
                         {player.position}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-gray-300">
+                    <td className="py-3 px-3 lg:px-4 text-gray-300 hidden sm:table-cell">
                       {player.role.replace(/_/g, ' ')}
                     </td>
-                    <td className="py-3 px-4 text-center">
+                    <td className="py-3 px-3 lg:px-4 text-center hidden md:table-cell">
                       <div className="inline-flex items-center gap-1.5">
                         <HeartPulse className="w-3.5 h-3.5 text-emerald-400" />
                         <span className="font-semibold text-gray-200">100%</span>
                       </div>
                     </td>
-                    <td className="py-3 px-4 text-center">
+                    <td className="py-3 px-3 lg:px-4 text-center hidden md:table-cell">
                       <span className="text-[11px] font-bold text-green-400 bg-green-500/10 px-2 py-0.5 rounded border border-green-500/20">
                         Superb
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-center font-bold text-gray-200">{pac}</td>
-                    <td className="py-3 px-4 text-center font-bold text-gray-200">{sho}</td>
-                    <td className="py-3 px-4 text-center font-bold text-gray-200">{pas}</td>
-                    <td className="py-3 px-4 text-center font-bold text-gray-200">{dri}</td>
-                    <td className="py-3 px-4 text-center font-bold text-gray-200">{def}</td>
-                    <td className="py-3 px-4 text-center font-bold text-gray-200">{phy}</td>
-                    <td className="py-3 px-4 text-right">
+                    <td className="py-3 px-3 lg:px-4 text-center font-bold text-gray-200">{pac}</td>
+                    <td className="py-3 px-3 lg:px-4 text-center font-bold text-gray-200 hidden sm:table-cell">{sho}</td>
+                    <td className="py-3 px-3 lg:px-4 text-center font-bold text-gray-200 hidden sm:table-cell">{pas}</td>
+                    <td className="py-3 px-3 lg:px-4 text-center font-bold text-gray-200 hidden sm:table-cell">{dri}</td>
+                    <td className="py-3 px-3 lg:px-4 text-center font-bold text-gray-200">{def}</td>
+                    <td className="py-3 px-3 lg:px-4 text-center font-bold text-gray-200 hidden sm:table-cell">{phy}</td>
+                    <td className="py-3 px-3 lg:px-4 text-right">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();

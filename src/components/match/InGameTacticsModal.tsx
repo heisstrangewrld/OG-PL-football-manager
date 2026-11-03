@@ -145,3 +145,4 @@ export const InGameTacticsModal: React.FC<InGameTacticsModalProps> = ({ isOpen, 
     </div>
   );
 };
+

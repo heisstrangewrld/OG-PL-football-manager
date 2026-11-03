@@ -42,7 +42,7 @@ export default function TacticsPage() {
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       {/* Top Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-black text-white tracking-tight">Tactical Command</h1>
           <p className="text-xs text-gray-400 mt-1">
@@ -52,11 +52,11 @@ export default function TacticsPage() {
 
         {/* Selected Player Role / Duty Quick Editor */}
         {selectedPlayer && (
-          <div className="flex items-center gap-3 bg-surface p-2 px-4 rounded-xl border border-pl-cyan/40 shadow-lg">
+          <div className="flex flex-wrap items-center gap-3 bg-surface p-2 px-4 rounded-xl border border-pl-cyan/40 shadow-lg">
             <span className="text-xs font-bold text-white">
               {selectedPlayer.name} ({selectedPlayer.position})
             </span>
-            <div className="h-4 w-[1px] bg-border" />
+            <div className="h-4 w-[1px] bg-border hidden sm:block" />
             <select
               value={selectedPlayer.role}
               onChange={(e) => setPlayerRole(selectedPlayer.id, e.target.value as PlayerRole)}
@@ -91,7 +91,7 @@ export default function TacticsPage() {
         </div>
 
         {/* Instructions Container */}
-        <div className="lg:col-span-6 h-[580px]">
+        <div className="lg:col-span-6 h-auto lg:h-[580px]">
           <InstructionsPanel />
         </div>
       </div>

@@ -42,7 +42,7 @@ export const CommentaryTicker: React.FC = () => {
   }, [activeEvents.length]);
 
   return (
-    <div className="bg-surface rounded-2xl border border-border p-4 shadow-xl flex flex-col h-[320px]">
+    <div className="bg-surface rounded-2xl border border-border p-4 shadow-xl flex flex-col h-[240px] sm:h-[320px]">
       <div className="flex items-center justify-between pb-3 border-b border-border/80 px-1">
         <h3 className="text-xs uppercase tracking-wider text-gray-400 font-bold flex items-center gap-2">
           <Flame className="w-3.5 h-3.5 text-pl-cyan" />
@@ -112,3 +112,4 @@ export const CommentaryTicker: React.FC = () => {
     </div>
   );
 };
+

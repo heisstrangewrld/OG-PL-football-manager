@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useMatchdayStore } from '@/stores/useMatchdayStore';
-import { Play, Pause, FastForward, SkipForward, Flame, Activity } from 'lucide-react';
+import { Play, Pause, SkipForward, Flame } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface MatchHUDProps {
@@ -39,23 +39,23 @@ export const MatchHUD: React.FC<MatchHUDProps> = ({ onOpenTactics }) => {
   ).length;
 
   return (
-    <div className="bg-surface/95 backdrop-blur-md rounded-2xl border border-border p-4 shadow-2xl flex flex-wrap items-center justify-between gap-4">
+    <div className="bg-surface/95 backdrop-blur-md rounded-2xl border border-border p-3 lg:p-4 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-3">
       {/* Live Scoreboard */}
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-4 lg:gap-6">
         {/* Home */}
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#6CABDD]/20 border border-[#6CABDD]/60 flex items-center justify-center font-black text-sm text-[#6CABDD] shadow-sm">
+        <div className="flex items-center gap-2 lg:gap-3">
+          <div className="w-9 h-9 lg:w-10 lg:h-10 rounded-xl bg-[#6CABDD]/20 border border-[#6CABDD]/60 flex items-center justify-center font-black text-sm text-[#6CABDD] shadow-sm">
             MCI
           </div>
           <div>
-            <h3 className="font-bold text-white text-sm">{matchResult.homeTeam.name}</h3>
+            <h3 className="font-bold text-white text-xs lg:text-sm">{matchResult.homeTeam.name}</h3>
             <span className="text-[10px] text-gray-400 font-semibold">Home</span>
           </div>
         </div>
 
         {/* Score & Clock Display */}
-        <div className="flex flex-col items-center px-4 py-1 bg-background/80 rounded-xl border border-border">
-          <div className="text-2xl font-black text-white tracking-wider flex items-center gap-2">
+        <div className="flex flex-col items-center px-3 lg:px-4 py-1 bg-background/80 rounded-xl border border-border">
+          <div className="text-xl lg:text-2xl font-black text-white tracking-wider flex items-center gap-2">
             <span>{homeGoals}</span>
             <span className="text-gray-500 text-lg">-</span>
             <span>{awayGoals}</span>
@@ -64,24 +64,24 @@ export const MatchHUD: React.FC<MatchHUDProps> = ({ onOpenTactics }) => {
         </div>
 
         {/* Away */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 lg:gap-3">
           <div>
-            <h3 className="font-bold text-white text-sm text-right">{matchResult.awayTeam.name}</h3>
+            <h3 className="font-bold text-white text-xs lg:text-sm text-right">{matchResult.awayTeam.name}</h3>
             <span className="text-[10px] text-gray-400 font-semibold block text-right">Away</span>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-rose-500/20 border border-rose-500/60 flex items-center justify-center font-black text-sm text-rose-500 shadow-sm">
+          <div className="w-9 h-9 lg:w-10 lg:h-10 rounded-xl bg-rose-500/20 border border-rose-500/60 flex items-center justify-center font-black text-sm text-rose-500 shadow-sm">
             ARS
           </div>
         </div>
       </div>
 
       {/* Playback Controls */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 lg:gap-3 flex-wrap justify-center">
         {/* Play / Pause */}
         <button
           onClick={togglePlay}
           className={cn(
-            'w-10 h-10 rounded-xl flex items-center justify-center transition-all shadow-md active:scale-95',
+            'w-9 h-9 lg:w-10 lg:h-10 rounded-xl flex items-center justify-center transition-all shadow-md active:scale-95',
             isPlaying
               ? 'bg-background border border-border text-white hover:border-pl-cyan'
               : 'bg-pl-cyan text-black font-bold hover:brightness-110 shadow-pl-cyan/20'
@@ -111,20 +111,20 @@ export const MatchHUD: React.FC<MatchHUDProps> = ({ onOpenTactics }) => {
         {/* Skip to Next Event */}
         <button
           onClick={jumpToNextEvent}
-          className="flex items-center gap-1.5 px-3 py-2 bg-background border border-border rounded-xl text-xs font-bold text-gray-300 hover:text-white hover:border-pl-cyan active:scale-95 transition-all shadow-sm"
+          className="flex items-center gap-1.5 px-2.5 lg:px-3 py-2 bg-background border border-border rounded-xl text-xs font-bold text-gray-300 hover:text-white hover:border-pl-cyan active:scale-95 transition-all shadow-sm"
           title="Jump to Next Highlight"
         >
           <SkipForward className="w-3.5 h-3.5 text-pl-cyan" />
-          <span>Next Event</span>
+          <span className="hidden sm:inline">Next Event</span>
         </button>
 
         {/* In-Game Tactics Modal Toggle */}
         <button
           onClick={onOpenTactics}
-          className="flex items-center gap-2 px-4 py-2 bg-surfaceHover border border-pl-cyan/40 rounded-xl text-xs font-bold text-pl-cyan hover:bg-pl-cyan/15 active:scale-95 transition-all shadow-sm"
+          className="flex items-center gap-1.5 lg:gap-2 px-3 lg:px-4 py-2 bg-surfaceHover border border-pl-cyan/40 rounded-xl text-xs font-bold text-pl-cyan hover:bg-pl-cyan/15 active:scale-95 transition-all shadow-sm"
         >
           <Flame className="w-4 h-4" />
-          <span>Tactics & Subs</span>
+          <span className="hidden sm:inline">Tactics &amp; Subs</span>
         </button>
       </div>
     </div>

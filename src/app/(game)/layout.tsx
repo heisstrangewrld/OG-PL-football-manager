@@ -9,13 +9,14 @@ export default function GameLayout({
 }) {
   return (
     <div className="flex h-screen overflow-hidden bg-background">
-      {/* Sidebar */}
+      {/* Sidebar — desktop only */}
       <GameSidebar />
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <GameHeader />
-        <main className="flex-1 overflow-y-auto p-6">
+        {/* pb-16 reserves space for the mobile bottom nav bar */}
+        <main className="flex-1 overflow-y-auto p-4 lg:p-6 pb-20 lg:pb-6">
           {children}
         </main>
       </div>
