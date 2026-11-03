@@ -53,3 +53,4 @@ export const useCareerStore = create<CareerState>((set) => ({
       clubName: name,
     })),
 }));
+
