@@ -276,3 +276,4 @@ export const sampleArsenal: TeamInput = {
   ],
   substitutes: [],
 };
+

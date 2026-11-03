@@ -231,3 +231,4 @@ export interface MatchResult {
   durationMinutes: number;
   seed: number;
 }
+

@@ -44,3 +44,4 @@ console.log(`Fouls:             ${result.stats.home.fouls}  -  ${result.stats.aw
 console.log(`Yellow Cards:      ${result.stats.home.yellowCards}  -  ${result.stats.away.yellowCards}`);
 console.log(`Red Cards:         ${result.stats.home.redCards}  -  ${result.stats.away.redCards}`);
 console.log('====================================================\n');
+
